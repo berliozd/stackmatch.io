@@ -35,8 +35,22 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        return array_merge(parent::share($request), [
-            //
+        $locales = array_map('basename', glob(base_path('lang') . '/*', GLOB_ONLYDIR));
+        $res = array_merge(parent::share($request), [
+            'app' => [
+                'name' => config('app.name'),
+                'locales' => $locales,
+                'home_route' => config('app.home-route'),
+            ]
         ]);
+        if (!empty($request->user())) {
+            if (!empty($subscription = auth()->user()?->subscription())) {
+                $subscription->on_grace_period = $subscription->onGracePeriod();
+                $subscription->end_date = $subscription->ends_at ? $subscription->ends_at->timestamp : 0;
+                $subscription->is_valid = $subscription->valid();
+            }
+            $res['subscription'] = $subscription;
+        }
+        return $res;
     }
 }

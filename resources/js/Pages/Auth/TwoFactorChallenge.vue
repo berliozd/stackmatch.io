@@ -1,12 +1,12 @@
 <script setup>
-import { nextTick, ref } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import {nextTick, ref} from 'vue';
+import {Head, useForm} from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 const recovery = ref(false);
 
@@ -42,7 +42,7 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <ApplicationLogo />
         </template>
 
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">

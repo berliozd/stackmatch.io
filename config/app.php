@@ -2,6 +2,9 @@
 
 return [
 
+    'style-default-mode' => env('APP_STYLE_DEFAULT_MODE', 'light'),
+
+    'home-route' => 'dashboard',
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -39,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------

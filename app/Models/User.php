@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
+use Laravel\Cashier\Billable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +31,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'github_id',
+        'google_id',
+        'settings',
     ];
 
     /**
@@ -63,5 +68,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function styleMode(): string
+    {
+        $settings = json_decode($this->settings, true);
+        $mode = $settings['mode'] ?? 'dark';
+        Log::debug('User style mode is : ' . $mode);
+        return $mode;
+    }
+
+    public static function getDefaultSettings(): array
+    {
+        return ['mode' => config('app.style-default-mode')];
     }
 }

@@ -1,23 +1,52 @@
 import './bootstrap';
 import '../css/app.css';
 
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import {createApp, h} from 'vue';
+import {createInertiaApp, router} from '@inertiajs/vue3';
+import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
+import {ZiggyVue} from '../../vendor/tightenco/ziggy';
+import {i18nVue} from 'laravel-vue-i18n'
+import {createPinia} from 'pinia'
+import VueSmoothScroll from 'vue3-smooth-scroll'
+import Clipboard from 'v-clipboard'
+import {useStore} from "@/Composables/store.js";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
+    setup({el, App, props, plugin}) {
+        return createApp({render: () => h(App, props)})
             .use(plugin)
             .use(ZiggyVue)
+            .use(i18nVue, {
+                resolve: async lang => {
+                    const langs = import.meta.glob('../../lang/*.json');
+                    if (typeof langs[`../../lang/${lang}.json`] != "undefined") {
+                        return await langs[`../../lang/${lang}.json`]();
+                    }
+                }
+            })
+            .use(createPinia())
+            .use(VueSmoothScroll)
+            .use(Clipboard)
             .mount(el);
     },
     progress: {
         color: '#4B5563',
     },
 });
+
+
+router.on('start', (event) => {
+    useStore().addHistory(event.detail.visit.url.href)
+    useStore().setIsLoading(true)
+})
+
+router.on('success', (event) => {
+    useStore().setIsLoading(false)
+})
+router.on('error', (event) => {
+    useStore().setIsLoading(false)
+})
