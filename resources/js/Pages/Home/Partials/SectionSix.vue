@@ -2,7 +2,7 @@
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Arrow from "@/Components/Arrow.vue";
 
-import {router} from "@inertiajs/vue3";
+import {router, usePage} from "@inertiajs/vue3";
 </script>
 <template>
   <section class=" text-center md:p-12 p-6 bg-neutral">
@@ -14,7 +14,7 @@ import {router} from "@inertiajs/vue3";
           successful projects.
         </p>
         <PrimaryButton @click="router.visit('register')">
-          <Arrow>Try Progr.io</Arrow>
+          <Arrow>Try {{ usePage().props.app.name}}</Arrow>
         </PrimaryButton>
       </div>
     </div>

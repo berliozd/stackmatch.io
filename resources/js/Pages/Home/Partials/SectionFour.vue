@@ -18,7 +18,7 @@ import {router, usePage} from "@inertiajs/vue3";
       <div class="relative w-full max-w-lg">
         <div class="relative flex flex-col h-full gap-3 lg:gap-6 z-10 bg-base-300 p-8 rounded-box">
           <p class="text-lg lg:text-xl font-bold">Free</p>
-          <p class="mt-2">Get a taste of progr.io - try it now</p>
+          <p class="mt-2">Get a taste of {{usePage().props.app.name}} - try it now</p>
           <div class="flex gap-2">
             <p class="text-5xl font-extrabold">$0</p>
             <div class="flex flex-col justify-end">
@@ -35,7 +35,7 @@ import {router, usePage} from "@inertiajs/vue3";
           </ul>
           <div class="space-y-2">
             <PrimaryButton @click="router.visit('register')">
-              <Arrow>Get Progr.io</Arrow>
+              <Arrow>Get {{usePage().props.app.name}}</Arrow>
             </PrimaryButton>
           </div>
         </div>
@@ -75,7 +75,7 @@ import {router, usePage} from "@inertiajs/vue3";
 
           <div class="space-y-2">
             <PrimaryButton @click="router.visit('register')">
-              <Arrow>Get Progr.io</Arrow>
+              <Arrow>Get {{usePage().props.app.name}}</Arrow>
             </PrimaryButton>
           </div>
         </div>

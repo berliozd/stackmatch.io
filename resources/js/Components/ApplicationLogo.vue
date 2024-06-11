@@ -3,7 +3,6 @@ import {Link, usePage} from "@inertiajs/vue3";
 
 const props = defineProps({simple: {type: Boolean, value: false}})
 const page = usePage();
-console.log(page);
 const appName = page.props.app.name;
 const cssClass = () => {
     return !props.simple ? 'border h-auto rounded' : '';

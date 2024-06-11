@@ -1,4 +1,5 @@
 <script setup>
+import {usePage} from "@inertiajs/vue3";
 </script>
 <template>
 
@@ -10,7 +11,7 @@
     </h2>
 
     <p class="max-w-2xl mx-auto text-lg leading-relaxed">
-      Progr.io allows you to effectively track your ideas and projects,
+      {{usePage().props.app.name}} allows you to effectively track your ideas and projects,
       collaborate and communicate easily,
       and save time and productivity
     </p>

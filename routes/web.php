@@ -49,3 +49,7 @@ Route::get('/auth/redirect-google', function () {
 
 Route::get(config('services.github.redirect'), ProvidersCallbackController::class);
 Route::get(config('services.google.redirect'), ProvidersCallbackController::class);
+
+Route::inertia('/terms', 'Home/Terms')->name('terms');
+Route::inertia('/privacy-policy', 'Home/Privacy')->name('privacy-policy');
+Route::inertia('/websites-search', 'App/WebsitesSearch')->name('websites-search');

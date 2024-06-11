@@ -126,4 +126,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'built_with_api_key'=> env('APP_BUILT_WITH_API_KEY', '')
+
 ];

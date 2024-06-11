@@ -3,7 +3,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import ListTick from "@/Components/ListTick.vue";
 import Arrow from "@/Components/Arrow.vue";
 
-import {router} from "@inertiajs/vue3";
+import {router, usePage} from "@inertiajs/vue3";
 </script>
 
 <template>
@@ -19,7 +19,7 @@ import {router} from "@inertiajs/vue3";
       <div  class="text-lg max-w-xl mx-auto">
         Our AI-powered tool not only helps you track progress and collaborate, but also provides valuable insights and information on your project's potential, including competitor analysis.
         <br>
-        Save time and make informed decisions with Progr.io.
+        Save time and make informed decisions with {{usePage().props.app.name}}.
       </div>
       <ul class="space-y-1.5">
         <li class="flex items-center justify-start gap-2">

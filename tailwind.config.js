@@ -23,7 +23,7 @@ export default {
         },
     },
     daisyui: {
-        themes: ['dracula'],
+        themes: ['dracula', 'cupcake', 'retro', 'cmyk', 'autumn', 'forest', 'dark', 'luxury', 'business', 'lemonade', 'night', 'coffee', 'winter'],
         base: true,
         styled: true,
         logs: true

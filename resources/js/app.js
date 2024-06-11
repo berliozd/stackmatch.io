@@ -40,6 +40,7 @@ createInertiaApp({
 
 
 router.on('start', (event) => {
+    console.log('before adding history');
     useStore().addHistory(event.detail.visit.url.href)
     useStore().setIsLoading(true)
 })
