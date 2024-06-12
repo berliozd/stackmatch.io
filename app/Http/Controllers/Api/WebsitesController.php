@@ -35,4 +35,21 @@ class WebsitesController extends Controller
         Log::info($response);
         return $response['Results'] ?? [];
     }
+
+//    public function index(string $domain)
+//    {
+//        $url = sprintf(
+//            'https://api.builtwith.com/v21/api.json?KEY=%s&LOOKUP=%s',
+//            config('app.built_with_api_key'),
+//            $domain
+//        );
+//        try {
+//            $response = json_decode(file_get_contents($url), true);
+//        } catch (\Exception $e) {
+//            Log::error($e->getMessage());
+//            return [];
+//        }
+//        Log::info($response);
+//        return $response['Results'] ?? [];
+//    }
 }

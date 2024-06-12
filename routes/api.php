@@ -12,6 +12,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::get('/websites', [WebsitesController::class, 'list']);
+//    Route::get('/website/{domain}', [WebsitesController::class, 'index']);
     Route::get('/tech-tags', [TechTagsController::class, 'index']);
     Route::get('/techs/search/{techName}', [TechsController::class, 'search']);
 });

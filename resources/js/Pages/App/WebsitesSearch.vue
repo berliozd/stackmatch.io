@@ -87,6 +87,23 @@ const setTech = (event) => {
     websites.value = null
     tech.value = event
 }
+
+const addWebsite = (website) => {
+    console.log(website);
+    // console.log(JSON.parse(JSON.stringify(website.META?.Social)));
+    const websiteData = {
+        url: website.D,
+        name: website.META?.CompanyName,
+        city: website.META?.City,
+        postcode: website.META?.Postcode,
+        country: website.META?.Country,
+        emails: JSON.parse(JSON.stringify(website.META?.Emails)),
+        phones: JSON.parse(JSON.stringify(website.META?.Telephones)),
+        socials: JSON.parse(JSON.stringify(website.META?.Social)),
+        techs: JSON.parse(JSON.stringify(tech.value))
+    }
+    console.log(websiteData);
+}
 </script>
 
 <template>
@@ -137,7 +154,8 @@ const setTech = (event) => {
                 <div class="items-center justify-between mt-2">
                     <div v-for="website in websites"
                          class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-1 mb-1 p-1 space-x-2 border">
-                        <a :href="'https://'+website.D" target="_blank">{{ website.D }}</a></div>
+                        <span @click="addWebsite(website)">{{ website.D }}</span>
+                    </div>
                 </div>
             </div>
         </Box>
