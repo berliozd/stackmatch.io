@@ -37,11 +37,11 @@ class PopulateTechs extends Command
                 $techTag = TechTag::firstOrCreate([
                     'name' => $tech['tag']
                 ]);
-                var_dump('tag id : ' . $techTag->id);
-                Tech::firstOrCreate([
+                $tech = Tech::firstOrCreate([
                     'name' => $tech['name'],
                     'tech_tag_id' => $techTag->id
                 ]);
+                Log::info($tech . ' - ' . $techTag . ' created or retrieved.');
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());

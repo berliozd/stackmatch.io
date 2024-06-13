@@ -47,13 +47,13 @@ class WebsitesController extends Controller
         $this->createRelations($request, 'socials', 'socials', 'social', $website);
         $this->createTechs($request, $website);
         $this->createAddress($request, $website);
-        $website->users()->toggle(auth()->user()->id);
+        $website->users()->attach(auth()->user()->id);
         return $website;
     }
 
     public function list()
     {
-        return UserWebsite::where('user_id', auth()->user()->id)->with('website')->get();
+        return UserWebsite::where('user_id', auth()->user()->id)->with('website.techs.tech.techTag')->get();
     }
 
     private function createWebsite(Request $request): Website
@@ -62,7 +62,7 @@ class WebsitesController extends Controller
             'url' => 'required',
             'name' => 'nullable|string',
         ]);
-        return Website::updateOrCreate($websiteData);
+        return Website::updateOrCreate(['url' => $websiteData['url']], $websiteData);
     }
 
     private function createRelations(

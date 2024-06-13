@@ -89,17 +89,15 @@ const setTech = (event) => {
 }
 
 const addWebsite = async (website) => {
-    console.log(website);
-    // console.log(JSON.parse(JSON.stringify(website.META?.Social)));
     const websiteData = {
         url: website.D,
-        name: website.META?.CompanyName,
-        city: website.META?.City,
-        postcode: website.META?.Postcode,
-        country: website.META?.Country,
-        emails: JSON.parse(JSON.stringify(website.META?.Emails)),
-        phones: JSON.parse(JSON.stringify(website.META?.Telephones)),
-        socials: JSON.parse(JSON.stringify(website.META?.Social)),
+        name: website.META?.CompanyName ?? website.label,
+        city: website.META?.City ?? '',
+        postcode: website.META?.Postcode ?? '',
+        country: website.META?.Country ?? '',
+        emails: JSON.parse(JSON.stringify(website.META?.Emails ?? [])),
+        phones: JSON.parse(JSON.stringify(website.META?.Telephones ?? [])),
+        socials: JSON.parse(JSON.stringify(website.META?.Social ?? [])),
         techs: [JSON.parse(JSON.stringify(tech.value))]
     }
     await axios.post('/api/websites/add', websiteData)
@@ -109,7 +107,6 @@ const addWebsite = async (website) => {
         .catch(error => {
             console.error(error);
         });
-    console.log(websiteData);
 }
 </script>
 
