@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Website extends Model
 {
@@ -38,5 +39,10 @@ class Website extends Model
     public function socials(): HasMany
     {
         return $this->hasMany(WebsiteSocial::class);
+    }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne(WebsiteAddress::class);
     }
 }

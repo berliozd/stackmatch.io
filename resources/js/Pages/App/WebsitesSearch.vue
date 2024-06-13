@@ -34,7 +34,7 @@ const getWebsites = async () => {
         }
         techOpen.value = countryOpen.value = false
         useStore().setIsLoading(true)
-        const url = '/api/websites'
+        const url = '/api/websites/search'
         const response = await axios.get(url, {
             params: {'tech': tech.value?.label, 'country': country.value?.label}
         })
@@ -88,7 +88,7 @@ const setTech = (event) => {
     tech.value = event
 }
 
-const addWebsite = (website) => {
+const addWebsite = async (website) => {
     console.log(website);
     // console.log(JSON.parse(JSON.stringify(website.META?.Social)));
     const websiteData = {
@@ -100,8 +100,15 @@ const addWebsite = (website) => {
         emails: JSON.parse(JSON.stringify(website.META?.Emails)),
         phones: JSON.parse(JSON.stringify(website.META?.Telephones)),
         socials: JSON.parse(JSON.stringify(website.META?.Social)),
-        techs: JSON.parse(JSON.stringify(tech.value))
+        techs: [JSON.parse(JSON.stringify(tech.value))]
     }
+    await axios.post('/api/websites/add', websiteData)
+        .then(response => {
+            useStore().setToast('Added!')
+        })
+        .catch(error => {
+            console.error(error);
+        });
     console.log(websiteData);
 }
 </script>
@@ -154,7 +161,7 @@ const addWebsite = (website) => {
                 <div class="items-center justify-between mt-2">
                     <div v-for="website in websites"
                          class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-1 mb-1 p-1 space-x-2 border">
-                        <span @click="addWebsite(website)">{{ website.D }}</span>
+                        <span @click="addWebsite(website)" class="hover:cursor-pointer">{{ website.D }}</span>
                     </div>
                 </div>
             </div>

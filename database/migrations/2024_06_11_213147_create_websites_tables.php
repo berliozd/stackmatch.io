@@ -10,36 +10,47 @@ return new class extends Migration {
      */
     public function up(): void
     {
-//        Schema::create('websites', function (Blueprint $table) {
-//            $table->id();
-//            $table->string('url');
-//            $table->string('name');
-//            $table->string('city');
-//            $table->string('postcode');
-//            $table->string('country');
-//            $table->timestamps();
-//        });
-//        Schema::create('websites_emails', function (Blueprint $table) {
-//            $table->id();
-//            $table->string('email');
-//            $table->foreignId('website_id')->constrained()->onDelete('cascade');
-//            $table->timestamps();
-//        });
-//        Schema::create('websites_phones', function (Blueprint $table) {
-//            $table->id();
-//            $table->string('phone');
-//            $table->foreignId('website_id')->constrained()->onDelete('cascade');
-//            $table->timestamps();
-//        });
-//        Schema::create('websites_socials', function (Blueprint $table) {
-//            $table->id();
-//            $table->string('social');
-//            $table->foreignId('website_id')->constrained()->onDelete('cascade');
-//            $table->timestamps();
-//        });
+        Schema::create('websites', function (Blueprint $table) {
+            $table->id();
+            $table->string('url');
+            $table->string('name')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('websites_addresses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('website_id')->constrained()->onDelete('cascade');
+            $table->string('city')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('country')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('websites_emails', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('website_id')->constrained()->onDelete('cascade');
+            $table->string('email');
+            $table->timestamps();
+        });
+        Schema::create('websites_phones', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('website_id')->constrained()->onDelete('cascade');
+            $table->string('phone');
+            $table->timestamps();
+        });
+        Schema::create('websites_socials', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('website_id')->constrained()->onDelete('cascade');
+            $table->string('social');
+            $table->timestamps();
+        });
         Schema::create('websites_techs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('website_id')->constrained()->onDelete('cascade');
             $table->foreignId('tech_id')->references('id')->on('techs')->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('users_websites', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('website_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
@@ -50,6 +61,12 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('websites_tables');
+        Schema::dropIfExists('websites_addresses');
+        Schema::dropIfExists('websites_emails');
+        Schema::dropIfExists('websites_phones');
+        Schema::dropIfExists('websites_socials');
+        Schema::dropIfExists('websites_techs');
+        Schema::dropIfExists('users_websites');
+        Schema::dropIfExists('websites');
     }
 };
