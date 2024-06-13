@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::get('/websites/search', [WebsitesController::class, 'search']);
     Route::post('/websites/add', [WebsitesController::class, 'store']);
-//    Route::get('/website/{domain}', [WebsitesController::class, 'index']);
+    Route::get('/websites/list', [WebsitesController::class, 'list']);
     Route::get('/tech-tags', [TechTagsController::class, 'index']);
     Route::get('/techs/search/{techName}', [TechsController::class, 'search']);
 });

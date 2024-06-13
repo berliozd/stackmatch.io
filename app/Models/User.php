@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
@@ -84,8 +84,8 @@ class User extends Authenticatable
         return ['mode' => config('app.style-default-mode')];
     }
 
-    public function websites(): HasMany
+    public function websites(): BelongsToMany
     {
-        return $this->hasMany(Website::class);
+        return $this->belongsToMany(Website::class)->withPivot(UserWebsite::class)->withTimestamps();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserWebsite;
 use App\Models\Website;
 use App\Models\WebsiteAddress;
 use Illuminate\Http\Request;
@@ -46,7 +47,13 @@ class WebsitesController extends Controller
         $this->createRelations($request, 'socials', 'socials', 'social', $website);
         $this->createTechs($request, $website);
         $this->createAddress($request, $website);
+        $website->users()->toggle(auth()->user()->id);
         return $website;
+    }
+
+    public function list()
+    {
+        return UserWebsite::where('user_id', auth()->user()->id)->with('website')->get();
     }
 
     private function createWebsite(Request $request): Website

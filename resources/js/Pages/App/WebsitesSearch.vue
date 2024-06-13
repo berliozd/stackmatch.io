@@ -148,7 +148,7 @@ const addWebsite = async (website) => {
             <div class="flex flex-row space-x-2 justify-between mt-2">
                 <div class="text-primary">
                     <template v-if="tech && country">
-                        <div>You selected <span class="font-bold underline">{{ tech.label }}</span> and <span
+                        <div>You have selected <span class="font-bold underline">{{ tech.label }}</span> and <span
                             class="font-bold underline">{{ country.label }}</span>.
                         </div>
                         <div>You can search for websites.</div>

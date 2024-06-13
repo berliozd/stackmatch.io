@@ -35,7 +35,8 @@ Route::middleware([
     Route::get('/user/invoice/{invoice}', function (Request $request, string $invoiceId) {
         return auth()->user()->downloadInvoice($invoiceId);
     })->name('invoices');
-
+    Route::inertia('/websites-search', 'App/WebsitesSearch')->name('websites-search');
+    Route::inertia('/websites', 'App/Websites')->name('websites');
 });
 
 Route::get('/auth/redirect-github', function () {
@@ -52,15 +53,4 @@ Route::get(config('services.google.redirect'), ProvidersCallbackController::clas
 
 Route::inertia('/terms', 'Home/Terms')->name('terms');
 Route::inertia('/privacy-policy', 'Home/Privacy')->name('privacy-policy');
-Route::inertia('/websites-search', 'App/WebsitesSearch')->name('websites-search');
 
-
-//Route::get('/test', function (Request $request) {
-//    $website = \App\Models\Website::with('techs')->with('socials')->with('emails')->with('phones')->first();
-//    foreach ($website->techs as $tech) {
-//        var_dump('NAME : ' . $tech->tech()->first()->name);
-//        var_dump('ID : ' . $tech->tech()->first()->id);
-//    }
-//    exit;
-//    return $website;
-//});

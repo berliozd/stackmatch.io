@@ -60,6 +60,9 @@ const subscription = usePage().props.subscription
                                 <NavLink :href="route('websites-search')" :active="route().current('websites-search')">
                                     Websites search
                                 </NavLink>
+                                <NavLink :href="route('websites')" :active="route().current('websites')">
+                                    My Websites
+                                </NavLink>
                                 <a :href="route('subscribe.checkout')" v-if="!subscription"
                                    :class="'inline-flex items-center px-1 pt-1 text-sm hover:text-neutral-content/70'">
                                     {{ $t('layout.subscription') }}
@@ -234,6 +237,9 @@ const subscription = usePage().props.subscription
                         <ResponsiveNavLink :href="route('websites-search')" :active="route().current('websites-search')">
                             Websites search
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('websites')" :active="route().current('websites')">
+                            My Websites
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -291,6 +297,7 @@ const subscription = usePage().props.subscription
                                                    :active="route().current('teams.create')">
                                     Create New Team
                                 </ResponsiveNavLink>
+
 
                                 <!-- Team Switcher -->
                                 <template v-if="$page.props.auth.user.all_teams.length > 1">

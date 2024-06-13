@@ -48,7 +48,7 @@ return new class extends Migration {
             $table->foreignId('tech_id')->references('id')->on('techs')->onDelete('cascade');
             $table->timestamps();
         });
-        Schema::create('users_websites', function (Blueprint $table) {
+        Schema::create('user_website', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('website_id')->constrained()->onDelete('cascade');
@@ -61,12 +61,17 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        $this->dropsTables();
+    }
+
+    private function dropsTables(): void
+    {
         Schema::dropIfExists('websites_addresses');
         Schema::dropIfExists('websites_emails');
         Schema::dropIfExists('websites_phones');
         Schema::dropIfExists('websites_socials');
         Schema::dropIfExists('websites_techs');
-        Schema::dropIfExists('users_websites');
+        Schema::dropIfExists('user_website');
         Schema::dropIfExists('websites');
     }
 };
