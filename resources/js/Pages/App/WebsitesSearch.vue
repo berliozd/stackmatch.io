@@ -91,7 +91,7 @@ const setTech = (event) => {
 const addWebsite = async (website) => {
     const websiteData = {
         url: website.D,
-        name: website.META?.CompanyName ?? website.label,
+        name: (website.META?.CompanyName && website.META?.CompanyName !== '') ?? website.D,
         city: website.META?.City ?? '',
         postcode: website.META?.Postcode ?? '',
         country: website.META?.Country ?? '',
@@ -153,7 +153,7 @@ const addWebsite = async (website) => {
                 </div>
                 <PrimaryButton @click="getWebsites">Get websites</PrimaryButton>
             </div>
-            <div v-if="websites">
+            <div v-if="websites && websites.length>0">
                 <hr class="my-4">
                 <div class="items-center justify-between mt-2">
                     <div v-for="website in websites"
