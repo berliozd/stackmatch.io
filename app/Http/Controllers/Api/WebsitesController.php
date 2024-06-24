@@ -56,6 +56,14 @@ class WebsitesController extends Controller
         return UserWebsite::where('user_id', auth()->user()->id)->with('website.techs.tech.techTag')->get();
     }
 
+    public function index(string $id)
+    {
+        $q = UserWebsite::where('user_id', auth()->user()->id)->where('id', $id)
+            ->with('website.techs.tech.techTag')
+            ->with('histories');
+        return $q->first();
+    }
+
     private function createWebsite(Request $request): Website
     {
         $websiteData = $request->validate([

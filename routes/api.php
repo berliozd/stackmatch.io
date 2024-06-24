@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\HistoriesController;
 use App\Http\Controllers\Api\TechsController;
 use App\Http\Controllers\Api\TechTagsController;
 use App\Http\Controllers\Api\WebsitesController;
@@ -13,7 +14,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::get('/websites/search', [WebsitesController::class, 'search']);
     Route::post('/websites/add', [WebsitesController::class, 'store']);
+    Route::post('/histories/add', [HistoriesController::class, 'store']);
     Route::get('/websites/list', [WebsitesController::class, 'list']);
     Route::get('/tech-tags', [TechTagsController::class, 'index']);
     Route::get('/techs/search/{techName}', [TechsController::class, 'search']);
+    Route::get('/user_website/{id}', [WebsitesController::class, 'index']);
 });

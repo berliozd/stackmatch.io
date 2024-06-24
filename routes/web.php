@@ -37,6 +37,7 @@ Route::middleware([
     })->name('invoices');
     Route::inertia('/websites-search', 'App/WebsitesSearch')->name('websites-search');
     Route::inertia('/websites', 'App/Websites')->name('websites');
+    Route::inertia('/website/{id}', 'App/Website')->name('website');
 });
 
 Route::get('/auth/redirect-github', function () {

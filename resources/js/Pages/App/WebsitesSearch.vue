@@ -8,11 +8,12 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Badges from "@/Components/Badges.vue";
 import TextInput from "@/Components/TextInput.vue";
+import Collapsable from "@/Components/Collapsable.vue";
+
 import {Head} from '@inertiajs/vue3';
 import {ref} from "vue";
 import {useStore} from "@/Composables/store.js";
 import {_, debounce} from "lodash";
-import Collapsable from "@/Components/Collapsable.vue";
 
 const tech = ref(null)
 const techSearch = ref(null)
@@ -91,7 +92,7 @@ const setTech = (event) => {
 const addWebsite = async (website) => {
     const websiteData = {
         url: website.D,
-        name: (website.META?.CompanyName && website.META?.CompanyName !== '') ?? website.D,
+        name: (website.META?.CompanyName && website.META?.CompanyName !== '') ? website.META?.CompanyName : website.D,
         city: website.META?.City ?? '',
         postcode: website.META?.Postcode ?? '',
         country: website.META?.Country ?? '',
@@ -111,7 +112,7 @@ const addWebsite = async (website) => {
 </script>
 
 <template>
-    <Head v-bind:title="$t('My stacks')"/>
+    <Head v-bind:title="$t('Websites search')"/>
     <AppLayout>
         <template #header>
             <PageHeader v-bind:title="$t('Websites search')"/>
@@ -166,4 +167,3 @@ const addWebsite = async (website) => {
 
     </AppLayout>
 </template>
-
