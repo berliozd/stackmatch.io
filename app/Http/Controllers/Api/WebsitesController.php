@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserWebsite;
 use App\Models\Website;
 use App\Models\WebsiteAddress;
 use Illuminate\Http\Request;
@@ -49,19 +48,6 @@ class WebsitesController extends Controller
         $this->createAddress($request, $website);
         $website->users()->attach(auth()->user()->id);
         return $website;
-    }
-
-    public function list()
-    {
-        return UserWebsite::where('user_id', auth()->user()->id)->with('website.techs.tech.techTag')->get();
-    }
-
-    public function index(string $id)
-    {
-        $q = UserWebsite::where('user_id', auth()->user()->id)->where('id', $id)
-            ->with('website.techs.tech.techTag')
-            ->with('histories');
-        return $q->first();
     }
 
     private function createWebsite(Request $request): Website

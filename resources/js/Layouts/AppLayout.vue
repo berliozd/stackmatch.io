@@ -54,19 +54,19 @@ const subscription = usePage().props.subscription
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                <NavLink :href="route('websites')" :active="route().current('websites')">
+                                    Websites
                                 </NavLink>
                                 <NavLink :href="route('websites-search')" :active="route().current('websites-search')">
                                     Websites search
-                                </NavLink>
-                                <NavLink :href="route('websites')" :active="route().current('websites')">
-                                    My Websites
                                 </NavLink>
                                 <a :href="route('subscribe.checkout')" v-if="!subscription"
                                    :class="'inline-flex items-center px-1 pt-1 text-sm hover:text-neutral-content/70'">
                                     {{ $t('layout.subscription') }}
                                 </a>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Dashboard
+                                </NavLink>
                             </div>
                         </div>
 

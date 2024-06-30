@@ -4,7 +4,7 @@ return [
 
     'style-default-mode' => env('APP_STYLE_DEFAULT_MODE', 'light'),
 
-    'home-route' => 'dashboard',
+    'home-route' => 'websites',
     /*
     |--------------------------------------------------------------------------
     | Application Name
