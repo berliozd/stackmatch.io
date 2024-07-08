@@ -3,12 +3,13 @@ import PageHeader from "@/Components/PageHeader.vue";
 import Box from "@/Components/Box.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextArea from "@/Components/TextArea.vue";
+import ErrorAlert from "@/Components/ErrorAlert.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
+import TextArea from "@/Components/TextArea.vue";
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {reactive, ref} from "vue";
 import {useStore} from "@/Composables/store.js";
-import ErrorAlert from "@/Components/ErrorAlert.vue";
 
 const props = defineProps({id: null})
 const id = window.location.href.split('/').pop();
@@ -65,13 +66,24 @@ const validate = (form) => {
             <PageHeader v-bind:title="$t('Website')"/>
         </template>
         <Box>
-            <div class="text-center text-2xl font-bold mb-4 uppercase">Name : {{ userWebsite?.website.name }}</div>
-            <div class="text-center">Url : {{ userWebsite?.website.url }}</div>
+            <div class="text-center text-2xl font-bold mb-4 uppercase">{{ userWebsite?.website.name }}</div>
+            <div class="text-center">Url :
+                <a :href="'https://www.' + userWebsite?.website.url" target="_blank">{{ userWebsite?.website.url }}</a>
+            </div>
         </Box>
         <Box>
             <div v-if="userWebsite?.website.techs.length>0" class="underline mb-2">Used technologies</div>
             <div class="flex flex-row space-x-2">
                 <div v-for="tech in userWebsite?.website.techs">{{ tech.tech.name }}</div>
+            </div>
+        </Box>
+        <Box>
+            <div v-if="userWebsite?.website.emails.length>0" class="underline mb-2">Emails</div>
+            <div class="flex flex-col w-full space-y-1">
+                <div v-for="email in userWebsite?.website.emails" class="flex flex-row justify-between">
+                    <div class="">{{ email.email }}</div>
+                    <SecondaryButton>Send email</SecondaryButton>
+                </div>
             </div>
         </Box>
         <Box>

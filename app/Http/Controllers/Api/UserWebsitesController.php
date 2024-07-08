@@ -16,6 +16,7 @@ class UserWebsitesController extends Controller
     {
         $q = UserWebsite::where('user_id', auth()->user()->id)->where('id', $id)
             ->with('website.techs.tech.techTag')
+            ->with('website.emails')
             ->with('histories');
         return $q->first();
     }
