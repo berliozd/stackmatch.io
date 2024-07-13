@@ -5,16 +5,20 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import ErrorAlert from "@/Components/ErrorAlert.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import DialogModal from "@/Components/DialogModal.vue";
 
 import TextArea from "@/Components/TextArea.vue";
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {reactive, ref} from "vue";
 import {useStore} from "@/Composables/store.js";
+import {askContactEmailContent} from "@/Composables/reallyAskAi.js";
 
 const props = defineProps({id: null})
 const id = window.location.href.split('/').pop();
 const userWebsite = ref(null)
-
+const isEmailModalOpen = ref(false);
+const emailToSendEmail = ref(null)
+const emailTemplate = ref('')
 const form = reactive({
     historyContent: '',
 })
@@ -57,6 +61,14 @@ const validate = (form) => {
     return true;
 }
 
+const openEmailModal = (email) => {
+    emailToSendEmail.value = email
+    isEmailModalOpen.value = true
+    askContactEmailContent(userWebsite?.value?.website?.name).then((response) => {
+        emailTemplate.value = response
+    })
+}
+
 </script>
 
 <template>
@@ -82,9 +94,22 @@ const validate = (form) => {
             <div class="flex flex-col w-full space-y-1">
                 <div v-for="email in userWebsite?.website.emails" class="flex flex-row justify-between">
                     <div class="">{{ email.email }}</div>
-                    <SecondaryButton>Send email</SecondaryButton>
+                    <SecondaryButton @click="openEmailModal(email.email)">Send email</SecondaryButton>
                 </div>
             </div>
+            <DialogModal :show="isEmailModalOpen" @close="isEmailModalOpen = false">
+                <template #content>
+                    <div>
+                        Send email to {{ emailToSendEmail }}
+                        <TextArea v-model="emailTemplate" class="w-full" rows="10"></TextArea>
+                    </div>
+                </template>
+                <template #footer>
+                    <SecondaryButton @click="isEmailModalOpen = false">
+                        Close
+                    </SecondaryButton>
+                </template>
+            </DialogModal>
         </Box>
         <Box>
             <div v-if="userWebsite?.histories.length>0" class="underline mb-2">History</div>
