@@ -73,27 +73,34 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
             </div>
             <div v-for="userWebsite in userWebsites"
                  class="grid grid-cols-3 gap-4 [&:nth-child(even)]:bg-neutral hover:bg-accent/20 p-1">
-                <div class="text-center">{{ userWebsite.website.name }}</div>
-                <div class="text-center">{{ userWebsite.website.url }}</div>
-                <div class="text-center items-center flex flex-col md:flex-row space-y-1 space-x-2 justify-end">
-                    <PrimaryButton @click="selectUserWebsite(userWebsite)">View</PrimaryButton>
-                    <SecondaryButton @click="deleteUserWebsite(userWebsite)">Delete</SecondaryButton>
+                <div class="text-center text-sm break-words">{{ userWebsite.website.name }}</div>
+                <div class="text-center  text-sm break-all">
+                    <a :href="'https://www.' + userWebsite.website.url" target="_blank">
+                        {{ userWebsite.website.url }}
+                    </a>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-y-0 space-y-1 md:space-x-2 justify-end">
+                    <PrimaryButton @click="selectUserWebsite(userWebsite)" :type="'button'"
+                                   class="flex justify-center h-10">View
+                    </PrimaryButton>
+                    <SecondaryButton @click="deleteUserWebsite(userWebsite)" class="flex justify-center h-10">Delete
+                    </SecondaryButton>
                 </div>
             </div>
         </Box>
         <DialogModal :show="displayingDelete" @close="displayingDelete = false">
             <template #content>
                 <div class="">Are your sure you want to remove
-                    <span class="font-bold text-accent">{{selectedUserWebsite?.website.name }}</span>
+                    <span class="font-bold text-accent">{{ selectedUserWebsite?.website.name }}</span>
                     from your website list?
                 </div>
             </template>
             <template #footer>
                 <div class="space-x-2">
-                <PrimaryButton @click="confirmDeleteUserWebsite(selectedUserWebsite)">Delete</PrimaryButton>
-                <SecondaryButton @click="displayingDelete = false">
-                    Close
-                </SecondaryButton>
+                    <PrimaryButton @click="confirmDeleteUserWebsite(selectedUserWebsite)">Delete</PrimaryButton>
+                    <SecondaryButton @click="displayingDelete = false">
+                        Close
+                    </SecondaryButton>
                 </div>
             </template>
         </DialogModal>

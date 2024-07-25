@@ -73,6 +73,7 @@ class AIService
         return 'write an email explaining that I would like to get in touch and offer my services or products.'
             . 'Be short and concise'
             . ', write in ' . $this->getLanguage()
-            . ',do not add the subject';
+            . ',do not add the subject'
+            . 'add a signature with name' . auth()->user()->name;
     }
 }

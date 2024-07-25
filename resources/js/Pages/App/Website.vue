@@ -6,18 +6,18 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import ErrorAlert from "@/Components/ErrorAlert.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
-
 import TextArea from "@/Components/TextArea.vue";
+
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {reactive, ref} from "vue";
 import {useStore} from "@/Composables/store.js";
 import {askContactEmailContent} from "@/Composables/reallyAskAi.js";
+import {Clipboard} from 'v-clipboard'
 
 const props = defineProps({id: null})
 const id = window.location.href.split('/').pop();
 const userWebsite = ref(null)
 const isEmailModalOpen = ref(false);
-const emailToSendEmail = ref(null)
 const emailTemplate = ref('')
 const form = reactive({
     historyContent: '',
@@ -61,12 +61,19 @@ const validate = (form) => {
     return true;
 }
 
-const openEmailModal = (email) => {
-    emailToSendEmail.value = email
-    isEmailModalOpen.value = true
+const openEmailModal = () => {
+    useStore().setIsLoading(true)
     askContactEmailContent(userWebsite?.value?.website?.name).then((response) => {
+        isEmailModalOpen.value = true
         emailTemplate.value = response
+        useStore().setIsLoading(false)
     })
+}
+
+
+const copy = () => {
+    Clipboard.writeClipboard(emailTemplate.value)
+    useStore().setToast('Copied to clipboard.')
 }
 
 </script>
@@ -94,20 +101,35 @@ const openEmailModal = (email) => {
             <div class="flex flex-col w-full space-y-1">
                 <div v-for="email in userWebsite?.website.emails" class="flex flex-row justify-between">
                     <div class="">{{ email.email }}</div>
-                    <SecondaryButton @click="openEmailModal(email.email)">Send email</SecondaryButton>
                 </div>
+            </div>
+            <div class="flex justify-center">
+                <SecondaryButton @click="openEmailModal()">Get contact email content suggestion</SecondaryButton>
             </div>
             <DialogModal :show="isEmailModalOpen" @close="isEmailModalOpen = false">
                 <template #content>
                     <div>
-                        Send email to {{ emailToSendEmail }}
                         <TextArea v-model="emailTemplate" class="w-full" rows="10"></TextArea>
                     </div>
                 </template>
                 <template #footer>
-                    <SecondaryButton @click="isEmailModalOpen = false">
-                        Close
-                    </SecondaryButton>
+                    <div class="flex space-x-2">
+                        <SecondaryButton v-if="emailTemplate" @click="copy" :title="'Copy to clipboard'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="lucide lucide-clipboard-copy">
+                                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                                <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                                <path d="M16 4h2a2 2 0 0 1 2 2v4"/>
+                                <path d="M21 14H11"/>
+                                <path d="m15 10-4 4 4 4"/>
+                            </svg>
+                        </SecondaryButton>
+                        <SecondaryButton @click="isEmailModalOpen = false">
+                            Close
+                        </SecondaryButton>
+                    </div>
                 </template>
             </DialogModal>
         </Box>
