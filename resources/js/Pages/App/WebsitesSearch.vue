@@ -23,11 +23,50 @@ const techOpen = ref(false)
 const countryOpen = ref(false)
 const techs = ref(null)
 const countries = [
-    {'id': 0, 'label': 'US'},
-    {'id': 1, 'label': 'FR'},
-    {'id': 2, 'label': 'IT'},
-]
+    {label: 'AT', name: 'Austria', id: 1},
+    {label: 'AF', name: 'Afghanistan', id: 2},
+    {label: 'AU', name: 'Austria', id: 3},
+    {label: 'BE', name: 'Belgium', id: 4},
+    {label: 'BR', name: 'Brazil', id: 5},
+    {label: 'CA', name: 'Canada', id: 6},
+    {label: 'CH', name: 'Switzerland', id: 7},
+    {label: 'CN', name: 'China', id: 8},
+    {label: 'CZ', name: 'Czech Republic', id: 9},
+    {label: 'DK', name: 'Denmark', id: 10},
+    {label: 'ES', name: 'Spain', id: 11},
+    {label: 'FI', name: 'Finland', id: 12},
+    {label: 'GB', name: 'United Kingdom', id: 13},
+    {label: 'GR', name: 'Greece', id: 14},
+    {label: 'HK', name: 'Hong Kong', id: 15},
+    {label: 'IN', name: 'India', id: 16},
+    {label: 'JP', name: 'Japan', id: 17},
+    {label: 'KR', name: 'Korea', id: 18},
+    {label: 'MX', name: 'Mexico', id: 19},
+    {label: 'MY', name: 'Malaysia', id: 20},
+    {label: 'US', name: 'United States', id: 21},
+    {label: 'FR', name: 'France', id: 22},
+    {label: 'IT', name: 'Italy', id: 23},
+    {label: 'UK', name: 'United Kingdom', id: 24},
+    {label: 'DE', name: 'Germany', id: 25},
+    {label: 'IN', name: 'India', id: 26},
+    {label: 'NL', name: 'Netherlands', id: 27},
+    {label: 'PH', name: 'Philippines', id: 28},
+    {label: 'RU', name: 'Russia', id: 29},
+    {label: 'TR', name: 'Turkey', id: 30},
+    {label: 'TW', name: 'Taiwan', id: 31},
+    {label: 'VN', name: 'Vietnam', id: 32},
+    {label: 'ZA', name: 'South Africa', id: 33},
+];
 
+const getCountries = () => {
+    countries.sort((a, b) => {
+        if (a.label > b.label) {
+            return 1
+        }
+        return (a.label < b.label) ? -1 : 0
+    })
+    return countries
+}
 const getWebsites = async () => {
     try {
         if (tech.value == null || country.value === null) {
@@ -104,6 +143,10 @@ const addWebsite = async (website) => {
     await axios.post('/api/websites/add', websiteData)
         .then(response => {
             useStore().setToast('Added!')
+            let index = websites.value.indexOf(website);
+            if (index !== -1) {
+                websites.value.splice(index, 1);
+            }
         })
         .catch(error => {
             console.error(error);
@@ -141,7 +184,7 @@ const addWebsite = async (website) => {
             <div
                 class="bg-neutral-content/40 shadow-lg shadow-secondary-content/40 border rounded-lg p-4 flex flex-col">
                 <label for="country">Select a country : </label>
-                <Badges :badges="countries" :badge="country?.id" @click="setCountry($event);"/>
+                <Badges :badges="getCountries()" :badge="country?.id" @click="setCountry($event);"/>
             </div>
             <div class="flex flex-row space-x-2 justify-between mt-2">
                 <div class="text-primary">
@@ -158,8 +201,17 @@ const addWebsite = async (website) => {
                 <hr class="my-4">
                 <div class="items-center justify-between mt-2">
                     <div v-for="website in websites"
-                         class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-1 mb-1 p-1 space-x-2 border">
-                        <span @click="addWebsite(website)" class="hover:cursor-pointer">{{ website.D }}</span>
+                         class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border">
+                        <span>{{ website.D }}</span>
+                        <span class="tooltip" data-tip="Add">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                             class="lucide lucide-plus mx-auto hover:cursor-pointer tooltip" data-tip="Add"
+                             @click="addWebsite(website)" alt="Add website">
+                            <path d="M5 12h14"/>
+                            <path d="M12 5v14"/>
+                        </svg>
+                        </span>
                     </div>
                 </div>
             </div>
