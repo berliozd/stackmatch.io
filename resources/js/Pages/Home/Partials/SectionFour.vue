@@ -10,7 +10,7 @@ import {router, usePage} from "@inertiajs/vue3";
     <p class="font-medium text-accent mb-8" id="pricing">Pricing</p>
 
     <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl">
-      Turn your ideas into successful project
+        Explore, connect, innovate.
     </h2>
 
     <div class="relative flex flex-col lg:flex-row justify-center lg:items-stretch gap-8">
@@ -27,10 +27,10 @@ import {router, usePage} from "@inertiajs/vue3";
           </div>
           <ul class="space-y-2.5 leading-relaxed text-base flex-1">
             <li class="flex items-center gap-2">
-              <ListTick>3 projects</ListTick>
+              <ListTick>3 searches</ListTick>
             </li>
             <li class="flex items-center gap-2">
-              <ListTick>0 AI credits</ListTick>
+              <ListTick>10 websites</ListTick>
             </li>
           </ul>
           <div class="space-y-2">
@@ -66,10 +66,10 @@ import {router, usePage} from "@inertiajs/vue3";
           </div>
           <ul class="space-y-2.5 leading-relaxed text-base flex-1">
             <li class="flex items-center gap-2">
-              <ListTick><span class="bg-accent/20">Unlimited</span> projects</ListTick>
+              <ListTick><span class="bg-accent/20">Unlimited</span> searches</ListTick>
             </li>
             <li class="flex items-center gap-2">
-              <ListTick><span><span class="bg-accent/20 px-1">Unlimited</span> AI credits </span></ListTick>
+              <ListTick><span><span class="bg-accent/20 px-1">Unlimited</span> websites</span></ListTick>
             </li>
           </ul>
 

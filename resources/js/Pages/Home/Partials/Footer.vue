@@ -13,8 +13,7 @@ import SimpleLink from "@/Components/SimpleLink.vue";
                             {{ usePage().props.app.name }}
                         </strong>
                     </a>
-                    <p class="mt-3 text-sm">Online ideas tracking tool for indie hackers, teams, freelancers, and
-                        entrepreneurs.</p>
+                    <p class="mt-3 text-sm">Tool for making connections and helping businesses thrive with their technology.</p>
                     <p class="mt-3 text-sm text-base-content/60">Copyright © 2024 - All rights reserved</p>
                 </div>
                 <div class="flex-grow flex flex-wrap justify-center -mb-10 md:mt-0 mt-10 text-center md:pl-24">
