@@ -10,7 +10,7 @@ import {router, usePage} from "@inertiajs/vue3";
     <p class="font-medium text-accent mb-8" id="pricing">Pricing</p>
 
     <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl">
-        Explore, connect, innovate.
+        Explore, connect, collaborate.
     </h2>
 
     <div class="relative flex flex-col lg:flex-row justify-center lg:items-stretch gap-8">
