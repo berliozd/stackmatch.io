@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AiAssistantController;
 use App\Http\Controllers\Api\HistoriesController;
 use App\Http\Controllers\Api\TechsController;
 use App\Http\Controllers\Api\TechTagsController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserWebsitesController;
 use App\Http\Controllers\Api\WebsitesController;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::patch('/user/{id}', [UserController::class, 'update']);
+
     Route::get('/websites/search', [WebsitesController::class, 'search']);
     Route::post('/websites/add', [WebsitesController::class, 'store']);
     Route::get('/tech-tags', [TechTagsController::class, 'index']);

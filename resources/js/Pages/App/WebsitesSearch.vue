@@ -16,6 +16,7 @@ import {useStore} from "@/Composables/store.js";
 import {_, debounce} from "lodash";
 import hasUsedFreeSearches from "@/Composables/App/hasUsedFreeSearches.js";
 import hasMaxWebsites from "@/Composables/App/hasMaxWebsites.js";
+import incrementSearches from "@/Composables/App/incrementSearches.js";
 
 const tech = ref(null)
 const techSearch = ref(null)
@@ -93,6 +94,7 @@ const getWebsites = async () => {
                     useStore().setIsLoading(false)
                     prepare(response)
                     websites.value = response.data
+                    incrementSearches()
                 })
             }
         })
@@ -144,8 +146,15 @@ const setTech = (event) => {
     tech.value = event
 }
 
-const reallyAddWebsite = async (website) => {
-    const websiteData = {
+const removeWebsite = (website) => {
+    let index = websites.value.indexOf(website);
+    if (index !== -1) {
+        websites.value.splice(index, 1);
+    }
+}
+
+function getWebsiteData(website) {
+    return {
         url: website.D,
         name: (website.META?.CompanyName && website.META?.CompanyName !== '') ? website.META?.CompanyName : website.D,
         city: website.META?.City ?? '',
@@ -156,13 +165,13 @@ const reallyAddWebsite = async (website) => {
         socials: JSON.parse(JSON.stringify(website.META?.Social ?? [])),
         techs: [JSON.parse(JSON.stringify(tech.value))]
     }
-    await axios.post('/api/websites/add', websiteData)
+}
+
+const reallyAddWebsite = async (website) => {
+    await axios.post('/api/websites/add', getWebsiteData(website))
         .then(response => {
             useStore().setToast('Added!')
-            let index = websites.value.indexOf(website);
-            if (index !== -1) {
-                websites.value.splice(index, 1);
-            }
+            removeWebsite(website);
         })
         .catch(error => {
             console.error(error);
