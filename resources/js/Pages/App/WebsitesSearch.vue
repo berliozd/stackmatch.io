@@ -14,6 +14,8 @@ import {Head} from '@inertiajs/vue3';
 import {ref} from "vue";
 import {useStore} from "@/Composables/store.js";
 import {_, debounce} from "lodash";
+import hasUsedFreeSearches from "@/Composables/App/hasUsedFreeSearches.js";
+import hasMaxWebsites from "@/Composables/App/hasMaxWebsites.js";
 
 const tech = ref(null)
 const techSearch = ref(null)
@@ -22,6 +24,9 @@ const websites = ref(null)
 const techOpen = ref(false)
 const countryOpen = ref(false)
 const techs = ref(null)
+const hasUsedFreeSearchesRef = ref(false)
+const hasMaxWebsitesRef = ref(false)
+
 const countries = [
     {label: 'AT', name: 'Austria', id: 1},
     {label: 'AF', name: 'Afghanistan', id: 2},
@@ -67,20 +72,31 @@ const getCountries = () => {
     })
     return countries
 }
+
 const getWebsites = async () => {
     try {
         if (tech.value == null || country.value === null) {
             return
         }
-        techOpen.value = countryOpen.value = false
-        useStore().setIsLoading(true)
-        const url = '/api/websites/search'
-        const response = await axios.get(url, {
-            params: {'tech': tech.value?.label, 'country': country.value?.label}
+        hasUsedFreeSearchesRef.value = false
+        hasMaxWebsitesRef.value = false
+        hasUsedFreeSearches().then((hasUsedFreeSearches) => {
+            if (hasUsedFreeSearches) {
+                hasUsedFreeSearchesRef.value = true
+                console.log('Not access');
+            } else {
+                techOpen.value = countryOpen.value = false
+                useStore().setIsLoading(true)
+                axios.get('/api/websites/search', {
+                    params: {'tech': tech.value?.label, 'country': country.value?.label}
+                }).then((response) => {
+                    useStore().setIsLoading(false)
+                    prepare(response)
+                    websites.value = response.data
+                })
+            }
         })
-        useStore().setIsLoading(false)
-        prepare(response)
-        websites.value = response.data
+
     } catch (error) {
         useStore().setIsLoading(false)
         console.log(error)
@@ -128,7 +144,7 @@ const setTech = (event) => {
     tech.value = event
 }
 
-const addWebsite = async (website) => {
+const reallyAddWebsite = async (website) => {
     const websiteData = {
         url: website.D,
         name: (website.META?.CompanyName && website.META?.CompanyName !== '') ? website.META?.CompanyName : website.D,
@@ -151,6 +167,22 @@ const addWebsite = async (website) => {
         .catch(error => {
             console.error(error);
         });
+}
+
+const addWebsite = async (website) => {
+    hasUsedFreeSearchesRef.value = false
+    hasMaxWebsitesRef.value = false
+    hasMaxWebsites().then((hasMaxWebsites) => {
+        if (hasMaxWebsites) {
+            hasMaxWebsitesRef.value = true
+            console.log('Not access');
+        } else {
+            reallyAddWebsite(website);
+        }
+    })
+}
+const gotTo = (url) => {
+    window.location.href = url
 }
 </script>
 
@@ -216,6 +248,32 @@ const addWebsite = async (website) => {
                 </div>
             </div>
         </Box>
+
+        <Box v-if="hasUsedFreeSearchesRef || hasMaxWebsitesRef">
+            <div class="flex flex-col space-y-2 p-4" ref="errorElement">
+                <div class="flex flex-row justify-between alert alert-error">
+                    <div>
+                        <template v-if="hasMaxWebsitesRef">
+                            {{
+                                "You have reached the limit of free websites. " +
+                                "Please consider subscribing to be able to add unlimited number of websites."
+                            }}
+                        </template>
+                        <template v-else>
+                            {{
+                                "You have reached the limit of free searches. " +
+                                "Please consider subscribing to get unlimited number of searches."
+                            }}
+
+                        </template>
+                    </div>
+                    <PrimaryButton @click="gotTo(route('subscribe.checkout'))">
+                        {{ $t('app.subscribe') }}
+                    </PrimaryButton>
+                </div>
+            </div>
+        </Box>
+
 
     </AppLayout>
 </template>

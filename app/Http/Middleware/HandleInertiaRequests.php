@@ -41,6 +41,8 @@ class HandleInertiaRequests extends Middleware
                 'name' => config('app.name'),
                 'locales' => $locales,
                 'home_route' => config('app.home-route'),
+                'nb_free_searches' => config('app.nb-free-searches'),
+                'nb_free_websites' => config('app.nb-free-websites'),
             ]
         ]);
         if (!empty($request->user())) {
