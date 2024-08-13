@@ -9,7 +9,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Loader from "@/Components/Loader.vue";
 import Toast from "@/Components/Toast.vue";
-
+import Footer from "@/Components/Footer.vue";
 
 defineProps({
     title: String,
@@ -75,19 +75,24 @@ const subscription = usePage().props.subscription
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button type="button"
-                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-                                                {{ $page.props.auth.user.current_team.name }}
+                                                                            <span class="inline-flex rounded-md">
+                                                                                <button type="button"
+                                                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                                                                    {{
+                                                                                        $page.props.auth.user.current_team.name
+                                                                                    }}
 
-                                                <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                     stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"/>
-                                                </svg>
-                                            </button>
-                                        </span>
+                                                                                    <svg class="ms-2 -me-0.5 h-4 w-4"
+                                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                                         fill="none" viewBox="0 0 24 24"
+                                                                                         stroke-width="1.5"
+                                                                                         stroke="currentColor">
+                                                                                        <path stroke-linecap="round"
+                                                                                              stroke-linejoin="round"
+                                                                                              d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"/>
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </span>
                                     </template>
 
                                     <template #content>
@@ -231,14 +236,21 @@ const subscription = usePage().props.subscription
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}"
                      class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                        <ResponsiveNavLink :href="route('websites')" :active="route().current('websites')">
+                            Websites
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('websites-search')" :active="route().current('websites-search')">
+                        <ResponsiveNavLink :href="route('websites-search')"
+                                           :active="route().current('websites-search')">
                             Websites search
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('websites')" :active="route().current('websites')">
-                            My Websites
+                        <a :href="route('subscribe.checkout')" v-if="!subscription"
+                           :class="'block w-full ps-3 pe-4 py-2 border-l-4 border-transparent text-start '+
+'font-medium focus:outline-none focus:bg-gray-700 text-base text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 '+
+'focus:border-gray-600 transition duration-150 ease-in-out'">
+                            {{ $t('layout.subscription') }}
+                        </a>
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            Dashboard
                         </ResponsiveNavLink>
                     </div>
 
@@ -349,6 +361,7 @@ const subscription = usePage().props.subscription
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </main>
         </div>
     </div>
