@@ -11,7 +11,7 @@ import TextInput from "@/Components/TextInput.vue";
 import Collapsable from "@/Components/Collapsable.vue";
 
 import {Head} from '@inertiajs/vue3';
-import {ref} from "vue";
+import {inject, nextTick, ref} from "vue";
 import {useStore} from "@/Composables/store.js";
 import {_, debounce} from "lodash";
 import hasUsedFreeSearches from "@/Composables/App/hasUsedFreeSearches.js";
@@ -20,6 +20,7 @@ import incrementSearches from "@/Composables/App/incrementSearches.js";
 import goTo from "@/Composables/App/goTo.js";
 import getCountries from "@/Composables/App/getCountries.js";
 
+const smoothScroll = inject('smoothScroll')
 const tech = ref(null)
 const techSearch = ref(null)
 const country = ref(null)
@@ -29,9 +30,11 @@ const countryOpen = ref(false)
 const techs = ref(null)
 const hasUsedFreeSearchesRef = ref(false)
 const hasMaxWebsitesRef = ref(false)
-
+const showResults = ref(false)
+const resultsElement = ref(null)
 
 const getWebsites = async () => {
+    showResults.value = false
     try {
         if (tech.value == null || country.value === null) {
             return
@@ -51,6 +54,8 @@ const getWebsites = async () => {
                     useStore().setIsLoading(false)
                     prepare(response)
                     websites.value = response.data
+                    showResults.value = true
+                    scrollToResults()
                     incrementSearches()
                 })
             }
@@ -147,6 +152,15 @@ const addWebsite = async (website) => {
         }
     })
 }
+
+const scrollToResults = () => {
+    nextTick(() => {
+        smoothScroll({
+            scrollTo: resultsElement.value,
+            hash: '#results'
+        })
+    })
+}
 </script>
 
 <template>
@@ -192,13 +206,15 @@ const addWebsite = async (website) => {
                 </div>
                 <PrimaryButton @click="getWebsites">Get websites</PrimaryButton>
             </div>
-            <div v-if="websites && websites.length>0">
-                <hr class="my-4">
-                <div class="items-center justify-between mt-2">
-                    <div v-for="website in websites"
-                         class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border border-gray-300 dark:border-gray-500">
-                        <span>{{ website.D }}</span>
-                        <span class="tooltip" data-tip="Add">
+
+            <div v-if="showResults" ref="resultsElement">
+                <div v-if="websites && websites.length>0">
+                    <hr class="my-4">
+                    <div class="items-center justify-between mt-2">
+                        <div v-for="website in websites"
+                             class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border border-gray-300 dark:border-gray-500">
+                            <span>{{ website.D }}</span>
+                            <span class="tooltip" data-tip="Add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
                              class="lucide lucide-plus mx-auto hover:cursor-pointer tooltip" data-tip="Add"
@@ -207,7 +223,11 @@ const addWebsite = async (website) => {
                             <path d="M12 5v14"/>
                         </svg>
                         </span>
+                        </div>
                     </div>
+                </div>
+                <div v-else>
+                    No results
                 </div>
             </div>
         </Box>

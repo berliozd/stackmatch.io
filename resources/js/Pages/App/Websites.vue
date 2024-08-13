@@ -75,7 +75,7 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
                     <div class="text-xs font-bold uppercase text-center py-2 "></div>
                 </div>
                 <div v-for="userWebsite in userWebsites"
-                     class="grid grid-cols-3 gap-4 [&:nth-child(even)]:bg-neutral hover:bg-accent/20 p-1 text-gray-500">
+                     class="grid grid-cols-3 gap-4 [&:nth-child(even)]:bg-neutral-content hover:bg-accent/20 p-1 text-gray-500">
                     <div class="text-center text-sm break-words">{{ userWebsite.website.name }}</div>
                     <div class="text-center text-sm break-all">
                         <a :href="'https://www.' + userWebsite.website.url" target="_blank">
