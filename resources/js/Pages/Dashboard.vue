@@ -7,16 +7,12 @@ import {Head} from '@inertiajs/vue3';
 import price from '@/Composables/price.js'
 import date from '@/Composables/date.js'
 import AppLayout from "@/Layouts/AppLayout.vue";
+import goTo from "@/Composables/App/goTo.js";
 
 defineProps({
     invoices: Array,
     subscription: null
 });
-
-const goTo = (url) => {
-    window.location.href = url
-}
-
 </script>
 
 <template>

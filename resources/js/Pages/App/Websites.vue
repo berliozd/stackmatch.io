@@ -64,7 +64,9 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
         <template #header>
             <PageHeader v-bind:title="$t('Websites')"/>
         </template>
-
+        <div class="w-full flex justify-center">
+            <PrimaryButton @click="router.visit('websites-search')">Search websites</PrimaryButton>
+        </div>
         <Box class="min-h-52">
             <div class="grid grid-cols-3 gap-4">
                 <div class="text-xs font-bold uppercase text-center py-2 ">Name</div>
@@ -88,6 +90,9 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
                 </div>
             </div>
         </Box>
+        <div class="w-full flex justify-center">
+            <PrimaryButton @click="router.visit('websites-search')">Search websites</PrimaryButton>
+        </div>
         <DialogModal :show="displayingDelete" @close="displayingDelete = false">
             <template #content>
                 <div class="">Are your sure you want to remove
