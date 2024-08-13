@@ -9,6 +9,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Badges from "@/Components/Badges.vue";
 import TextInput from "@/Components/TextInput.vue";
 import Collapsable from "@/Components/Collapsable.vue";
+import Separator from "@/Components/Separator.vue";
 
 import {Head} from '@inertiajs/vue3';
 import {inject, nextTick, ref} from "vue";
@@ -32,6 +33,7 @@ const hasUsedFreeSearchesRef = ref(false)
 const hasMaxWebsitesRef = ref(false)
 const showResults = ref(false)
 const resultsElement = ref(null)
+const errorElement = ref(null)
 
 const getWebsites = async () => {
     showResults.value = false
@@ -44,6 +46,7 @@ const getWebsites = async () => {
         hasUsedFreeSearches().then((hasUsedFreeSearches) => {
             if (hasUsedFreeSearches) {
                 hasUsedFreeSearchesRef.value = true
+                scrollToErrorMessage()
                 console.log('Not access');
             } else {
                 techOpen.value = countryOpen.value = false
@@ -161,6 +164,14 @@ const scrollToResults = () => {
         })
     })
 }
+const scrollToErrorMessage = () => {
+    nextTick(() => {
+        smoothScroll({
+            scrollTo: errorElement.value,
+            hash: '#error'
+        })
+    })
+}
 </script>
 
 <template>
@@ -208,8 +219,8 @@ const scrollToResults = () => {
             </div>
 
             <div v-if="showResults" ref="resultsElement">
+                <Separator :text="'Results'" class="mt-4"/>
                 <div v-if="websites && websites.length>0">
-                    <hr class="my-4">
                     <div class="items-center justify-between mt-2">
                         <div v-for="website in websites"
                              class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border border-gray-300 dark:border-gray-500">
