@@ -182,7 +182,7 @@ const addWebsite = async (website) => {
                 <Badges :badges="getCountries()" :badge="country?.id" @click="setCountry($event);"/>
             </div>
             <div class="flex flex-row space-x-2 justify-between mt-2">
-                <div class="text-primary">
+                <div class="text-accent">
                     <template v-if="tech && country">
                         <div>You have selected <span class="font-bold underline">{{ tech.label }}</span> and <span
                             class="font-bold underline">{{ country.name }}</span>.
@@ -196,7 +196,7 @@ const addWebsite = async (website) => {
                 <hr class="my-4">
                 <div class="items-center justify-between mt-2">
                     <div v-for="website in websites"
-                         class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border">
+                         class="inline-flex rounded-lg shadow-lg shadow-secondary-content/40 mr-2 mb-1 p-1 space-x-2 border border-gray-300 dark:border-gray-500">
                         <span>{{ website.D }}</span>
                         <span class="tooltip" data-tip="Add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

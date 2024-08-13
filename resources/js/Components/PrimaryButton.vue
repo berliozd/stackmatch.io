@@ -12,7 +12,7 @@ defineProps({
     inline-flex items-center
     px-4 py-2
     bg-gray-800 dark:bg-gray-200
-    border border-transparent
+    border border-gray-300 dark:border-gray-500
     rounded-md
     font-semibold text-xs text-white dark:text-gray-800 uppercase
     tracking-widest

@@ -136,15 +136,11 @@ const copy = () => {
         <Box>
             <div v-if="userWebsite?.histories.length>0" class="underline mb-2">History</div>
             <div v-else>No history</div>
-            <div v-for="history in userWebsite?.histories" class="mb-2 bg-gradient-to-b from-neutral p-1">
+            <div v-for="history in userWebsite?.histories" class="mb-2 bg-gradient-to-b from-neutral-50 p-1">
                 <div class="">
                     {{ history?.content }}
                 </div>
                 <div class="flex md:flex-row flex-col md:space-x-8 justify-end">
-                    <div class="flex md:space-x-4 space-x-2 justify-end">
-                        <div class="text-xs">Edit</div>
-                        <div class="text-xs">Delete</div>
-                    </div>
                     <div class="text-xs justify-end flex">Created at : {{ history?.created_at }}</div>
                 </div>
             </div>

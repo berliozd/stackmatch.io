@@ -35,7 +35,7 @@ defineProps({
             <div v-else>
                 {{ $t('dashboard.not_subscribed') }}
                 <p>{{ $t('dashboard.consider_subscribing_for_full_features') }}</p>
-                <PrimaryButton @click="goTo(route('subscribe.checkout'))">{{ $t('app.subscribe') }}</PrimaryButton>
+                <PrimaryButton @click="goTo(route('subscribe.checkout'))" >{{ $t('app.subscribe') }}</PrimaryButton>
             </div>
         </Box>
 

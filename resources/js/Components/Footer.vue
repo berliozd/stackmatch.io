@@ -9,7 +9,7 @@ const isActive = (route) => {
 const appHomeRoute = route(usePage().props.app.home_route);
 </script>
 <template>
-    <div class="btm-nav">
+    <div class="btm-nav shadow-lg border">
         <ApplicationLogo v-bind:simple="true"></ApplicationLogo>
         <a v-bind:href="appHomeRoute"
            v-bind:class="isActive(appHomeRoute)?'active':''">
