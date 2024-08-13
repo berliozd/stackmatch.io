@@ -14,7 +14,6 @@ const countries = [
     {label: 'GB', name: 'United Kingdom', id: 13},
     {label: 'GR', name: 'Greece', id: 14},
     {label: 'HK', name: 'Hong Kong', id: 15},
-    {label: 'IN', name: 'India', id: 16},
     {label: 'JP', name: 'Japan', id: 17},
     {label: 'KR', name: 'Korea', id: 18},
     {label: 'MX', name: 'Mexico', id: 19},
@@ -32,6 +31,9 @@ const countries = [
     {label: 'TW', name: 'Taiwan', id: 31},
     {label: 'VN', name: 'Vietnam', id: 32},
     {label: 'ZA', name: 'South Africa', id: 33},
+    {label: "SE", name: "Sweden", id: 34},
+    {label: 'NO', name: 'Norway', id: 35},
+    {label: 'ID', name: 'Indonesia', id: 36},
 ];
 
 export default () => {

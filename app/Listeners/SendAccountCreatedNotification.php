@@ -26,54 +26,56 @@ class SendAccountCreatedNotification
     private function sendEmail($user): void
     {
         $content = <<<HTML
-Dear :user_name,
+Hi :user_name,
 <br/>
 <br/>
-We are thrilled to have you on board!
+<strong>Welcome to :app_name!</strong>
 <br/>
 <br/>
-Welcome to :app_name, a unique SaaS solution designed specifically for people like you to track, define, and refine your project ideas.
+We're thrilled to have you join our community of developers, creators, recruiters, and investors. Your free account gives you access to a powerful tool designed to help you discover, connect, and innovate with the right technology partners.
 <br/>
 <br/>
-Our mission is to help you transform your ideas into reality, and we're excited to be a part of your creative journey.
+<strong>Here's what you can do with your free account:</strong>
 <br/>
 <br/>
+<ul>
+<li><strong>Search and Filter:</strong> Find websites that use the technologies you're interested in (3 searches available with the free account).</li>
+<li><strong>Connect:</strong> Reach out to potential clients, partners, or employers who match your tech stack (10 websites can be added with your free account).</li>
+</ul>
 <br/>
-As a free account user, you have access to the following features:
+<br/>
+<strong>Getting Started:</strong>
 <br/>
 <br/>
-<strong>1: Track Up to 3 Projects:</strong><br>
-<p>You can now easily manage and monitor the progress of up to three projects simultaneously. 
-Our platform allows you to keep all your ideas organized in one place, making it easier for you to focus on what matters most - bringing your projects to life.
-</p>
-<strong>2: Define Your Projects with AI Assistance:</strong><br>
-
-<p>We understand that defining a project can sometimes be challenging. That's why
-we've integrated AI technology into our platform. With your free account, you'll receive :nb_fee_credits AI credits. 
-Each credit allows you to gain valuable insights such as potential users, potential features, benefits, and monetization strategies for your project.
-</p>
+<ul>
+<li><strong>Complete Your Profile</strong></li>
+<li><strong>Start Searching:</strong> Use our advanced search filters to find websites that align with your interests.</li>
+<li><strong>Connect and Collaborate:</strong> Reach out to potential partners and start building meaningful connections.</li>
+</ul>
 <br/>
-<strong>Here's how it works: </strong><br/>
-<p>One AI credit is used each time you request insights for a specific aspect of your project (like potential users or features). 
-This means you can get a comprehensive understanding of how your project will impact users. Use these credits wisely to shape your projects into successful ventures!
-</p>
 <br/>
-<p>
-Remember, the key to success is not just having great ideas, but also knowing how to execute them. We believe that :app_name will be a valuable tool for you.
-</p>
-Create your first project today:
-<a href=":app_url"><strong>:app_url</strong></a>
-<p>
-If you have any questions or need assistance, please don't hesitate to reach out to our support team. We're here to help
-you make the most of your experience with :app_name.
-</p>
+<strong>Need Help?</strong>
 <br/>
-Thank you for choosing us, and here's to turning your ideas into reality!
 <br/>
-Best Regards,
+Our support team is here to assist you. Feel free to reach out to us at [support@stackmatch.io](mailto:support@stackmatch.io) with any questions or feedback.
+<br/>
+<br/>
+<strong>Stay Tuned:</strong>
+<br/>
+<br/>
+We'll keep you updated with the latest features, success stories, and tips to help you make the most of :app_name.
+<br/>
+<br/>
+<strong>Thank you for joining us on this exciting journey!</strong>
+<br/>
+<br/>
+Best regards,
+<br/>
 <br/>
 Didier
+<br/>
 Founder of :app_name
+<br/>
 HTML;
 
         $mj = new Client(
@@ -83,7 +85,7 @@ HTML;
             ['version' => 'v3.1']
         );
         $subject = __(
-            'Welcome to :app_name!',
+            'Welcome to :app_name – Your Journey Starts Here!',
             ['app_name' => config('app.name')]
         );
         $body = [
