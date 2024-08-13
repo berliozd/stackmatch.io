@@ -8,7 +8,7 @@ const props = defineProps({
 const emits = defineEmits(['click'])
 
 const badgeCss = (badge) => {
-    const baseCss = 'badge badge-outline badge-lg mr-2 mb-2 ';
+    const baseCss = 'badge badge-outline badge-lg mr-2 mb-2 tooltip';
     if (props.badge === badge.id) {
         return baseCss + ' badge-accent';
     }
@@ -16,9 +16,8 @@ const badgeCss = (badge) => {
 }
 </script>
 <template>
-<!--    {{badges}}-->
     <div class="flex flex-wrap">
-        <div v-for="badge in badges" @click="emits('click',badge)" :class="badgeCss(badge)">
+        <div v-for="badge in badges" @click="emits('click',badge)" :class="badgeCss(badge)" :data-tip="badge.name">
             {{ badge.label }}
         </div>
     </div>
