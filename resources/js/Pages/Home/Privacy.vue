@@ -11,7 +11,7 @@ import {Head, usePage} from '@inertiajs/vue3';
             <h1 class="text-3xl font-extrabold pb-6">Privacy Policy for {{ usePage().props.app.name }}</h1>
 
             <pre class="leading-relaxed whitespace-pre-wrap">
-  Last Updated: May 21, 2024
+  Last Updated: August 15, 2024
 
 At StackMatch.io ("StackMatch.io", "we", "us", or "our"), we are dedicated to safeguarding the privacy and security of our users. This privacy policy ("Privacy Policy") explains how we collect, use, and disclose information about you when you access and use our services, including the website located at https://stackmatch.io (the "Site"), and our tech stack identification tool (the "Service").
 

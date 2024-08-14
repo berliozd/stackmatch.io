@@ -13,7 +13,7 @@ import {Head} from "@inertiajs/vue3";
             <h1 class="text-3xl font-extrabold pb-6">Terms and Conditions for progr.io</h1>
 
             <pre class="leading-relaxed whitespace-pre-wrap">
-  Last Updated: May 21, 2024
+  Last Updated: August 15, 2024
 
 1. Acceptance of Terms
 
@@ -24,6 +24,8 @@ By accessing and using the services provided by StackMatch.io ("StackMatch.io", 
 StackMatch.io provides a tool that helps tech vendors or developers to find merchants or websites that use a specific tech stack. Our services are provided on an "as is" and "as available" basis, and we make no warranties or representations about the quality, accuracy, or reliability of our services.
 
 We offer a free version of our services with limited features, as well as a paid version with additional features and capabilities. The free version of our services is provided without limitation in time, and you may use it for as long as you wish. However, we reserve the right to modify or discontinue the free version of our services at any time, without notice.
+
+Our services utilize data from the BuiltWith API to gather information about the technologies used by websites. By using our services, you acknowledge and agree that the data provided by BuiltWith is subject to their terms and conditions, and we are not responsible for the accuracy or reliability of this data.
 
 3. User Conduct
 
