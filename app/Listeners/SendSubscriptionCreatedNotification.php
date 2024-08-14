@@ -89,9 +89,7 @@ HTML;
             $content,
             [
                 'user_name' => $user->name,
-                'app_name' => config('app.name'),
-                'nb_fee_credits' => config('app.free-ai-credits'),
-                'app_url' => config('app.url')
+                'app_name' => config('app.name')
             ]
         );
 
