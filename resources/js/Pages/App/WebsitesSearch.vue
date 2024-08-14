@@ -10,6 +10,7 @@ import Badges from "@/Components/Badges.vue";
 import TextInput from "@/Components/TextInput.vue";
 import Collapsable from "@/Components/Collapsable.vue";
 import Separator from "@/Components/Separator.vue";
+import Ad from "@/Components/Ad.vue";
 
 import {Head} from '@inertiajs/vue3';
 import {inject, nextTick, ref} from "vue";
@@ -180,7 +181,6 @@ const scrollToErrorMessage = () => {
         <template #header>
             <PageHeader v-bind:title="$t('Websites search')"/>
         </template>
-
         <Collapsable :open="true" title="Websites search">
             Welcome to our technology stack search tool! With this tool, you can easily find websites that use specific
             technologies in a particular country. Simply select the technology and country you're interested in, and
@@ -192,7 +192,7 @@ const scrollToErrorMessage = () => {
             a researcher studying the adoption of certain technologies, or just curious about the technologies used by
             websites in a particular country, our tool has you covered.
         </Collapsable>
-
+        <Ad :el="'top'"/>
         <Box class="min-h-52">
             <div
                 class="bg-neutral-content/40 shadow-lg shadow-secondary-content/40 border rounded-lg p-4 flex flex-col mb-4">
@@ -242,7 +242,6 @@ const scrollToErrorMessage = () => {
                 </div>
             </div>
         </Box>
-
         <Box v-if="hasUsedFreeSearchesRef || hasMaxWebsitesRef">
             <div class="flex flex-col space-y-2 p-4" ref="errorElement">
                 <div class="flex flex-row justify-between alert alert-error">
@@ -267,7 +266,6 @@ const scrollToErrorMessage = () => {
                 </div>
             </div>
         </Box>
-
-
+        <Ad :el="'bottom'"/>
     </AppLayout>
 </template>

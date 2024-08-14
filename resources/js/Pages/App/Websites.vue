@@ -5,6 +5,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Ad from "@/Components/Ad.vue";
 
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {useStore} from "@/Composables/store.js";
@@ -64,6 +65,7 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
         <template #header>
             <PageHeader v-bind:title="$t('Websites')"/>
         </template>
+        <Ad :el="'top'"/>
         <div class="w-full flex justify-center">
             <PrimaryButton @click="router.visit('websites-search')">Search websites</PrimaryButton>
         </div>
@@ -92,13 +94,14 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
                 </div>
             </template>
             <div v-if="userWebsites?.length==0"
-                      class="my-4 h-32 rounded p-4 flex justify-center items-center border border-white/50 uppercase text-3xl">
+                 class="my-4 h-32 rounded p-4 flex justify-center items-center border border-white/50 uppercase text-3xl">
                 No websites so far...
             </div>
         </Box>
         <div class="w-full flex justify-center">
             <PrimaryButton @click="router.visit('websites-search')">Search websites</PrimaryButton>
         </div>
+        <Ad :el="'bottom'"/>
         <DialogModal :show="displayingDelete" @close="displayingDelete = false">
             <template #content>
                 <div class="">Are your sure you want to remove

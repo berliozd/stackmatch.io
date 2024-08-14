@@ -7,6 +7,7 @@ import ErrorAlert from "@/Components/ErrorAlert.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import TextArea from "@/Components/TextArea.vue";
+import Ad from "@/Components/Ad.vue";
 
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {reactive, ref} from "vue";
@@ -84,6 +85,7 @@ const copy = () => {
         <template #header>
             <PageHeader v-bind:title="$t('Website')"/>
         </template>
+        <Ad :el="'top'"/>
         <Box>
             <div class="text-center text-2xl font-bold mb-4 uppercase">{{ userWebsite?.website.name }}</div>
             <div class="text-center">Url :
@@ -159,6 +161,7 @@ const copy = () => {
                 <div v-if="form.errors?.email">{{ form.errors?.email }}</div>
             </form>
         </Box>
+        <Ad :el="'bottom'"/>
     </AppLayout>
 </template>
 

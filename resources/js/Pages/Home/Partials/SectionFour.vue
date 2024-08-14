@@ -32,6 +32,9 @@ import {router, usePage} from "@inertiajs/vue3";
             <li class="flex items-center gap-2">
               <ListTick>10 websites</ListTick>
             </li>
+              <li class="flex items-center gap-2">
+                  <ListTick>Ads</ListTick>
+              </li>
           </ul>
           <div class="space-y-2">
             <PrimaryButton @click="router.visit('register')">
@@ -71,6 +74,9 @@ import {router, usePage} from "@inertiajs/vue3";
             <li class="flex items-center gap-2">
               <ListTick><span><span class="bg-accent/20 px-1">Unlimited</span> websites</span></ListTick>
             </li>
+              <li class="flex items-center gap-2">
+                  <ListTick><span><span class="bg-accent/20 px-1">No</span> ads</span></ListTick>
+              </li>
           </ul>
 
           <div class="space-y-2">
