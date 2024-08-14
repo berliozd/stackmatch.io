@@ -32,7 +32,7 @@ onMounted(() => {
     adElement.appendChild(script2);
 })
 </script>
-<template v-if="!usePage().props.auth?.subscription">
+<template v-if="!usePage().props.subscription || !usePage().props.subscription.is_valid">
     <div class="max-w-7xl mx-auto">
         <div :id="'ad-element-' + props.el"><!-- stackmatch.io --></div>
     </div>
