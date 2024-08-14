@@ -78,11 +78,12 @@ To start enjoying your premium benefits, simply log in to your account: <a href=
 If you have any questions or need assistance, please don't hesitate to reach out to our support team. We're here to help you make the most of your experience.
 </p>
 <br/>
-Thank you for choosing us, and here's to turning your ideas into reality!
+Thank you for choosing us!
 <br/>
 Best Regards,
 <br/>
 Didier
+<br/>
 Founder of :app_name
 HTML;
         $content = __(
