@@ -89,7 +89,8 @@ HTML;
             $content,
             [
                 'user_name' => $user->name,
-                'app_name' => config('app.name')
+                'app_name' => config('app.name'),
+                'app_url' => config('app.url')
             ]
         );
 
