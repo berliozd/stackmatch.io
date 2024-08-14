@@ -3,7 +3,7 @@ import {usePage} from "@inertiajs/vue3";
 
 export default async function hasUsedFreeSearches() {
     // return true
-    if (usePage().props.auth.subscription && usePage().props.auth.subscription.is_valid) {
+    if (usePage().props.subscription && usePage().props.subscription.is_valid) {
         return false
     }
     const userResponse = await axios.get('/api/user')
