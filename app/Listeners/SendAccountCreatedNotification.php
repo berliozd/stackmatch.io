@@ -2,10 +2,15 @@
 
 namespace App\Listeners;
 
+use App\Services\SendMailService;
 use Illuminate\Auth\Events\Registered;
 
 class SendAccountCreatedNotification
 {
+    public function __construct(private readonly SendMailService $sendMailService)
+    {
+    }
+
     public function handle(Registered $event): void
     {
         $this->sendEmail($event->user);
