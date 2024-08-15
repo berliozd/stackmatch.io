@@ -6,17 +6,22 @@
             Get help finding your customers
         </h2>
         <p class="max-w-xl mx-auto text-lg opacity-80 leading-relaxed mb-12 md:mb-20">
-            Not knowing your potential customers and the technologies they use can be extremely confusing and counterproductive.
+            Not knowing your potential customers and the technologies they use can be extremely confusing and
+            counterproductive.
             <br>
-            Without this crucial information, it becomes difficult to effectively target your marketing and sales efforts.
+            Without this crucial information, it becomes difficult to effectively target your marketing and sales
+            efforts.
             <br>
-            You risk wasting time and resources by approaching companies that are not interested in your solutions or that use technologies that are incompatible with yours.
+            You risk wasting time and resources by approaching companies that are not interested in your solutions or
+            that use technologies that are incompatible with yours.
             <br>
-            Furthermore, this uncertainty can cause your products and services to be poorly adapted to the real needs of the market, thus reducing your chances of success.
+            Furthermore, this uncertainty can cause your products and services to be poorly adapted to the real needs of
+            the market, thus reducing your chances of success.
             <br>
             <br>
             <br>
-            Our tool solves this problem by allowing you to search and filter websites based on the technologies they use, giving you a clear and accurate view of your potential customers and their technology needs.
+            Our tool solves this problem by allowing you to search and filter websites based on the technologies they
+            use, giving you a clear and accurate view of your potential customers and their technology needs.
         </p>
 
         <div class="flex flex-col md:flex-row justify-center items-center md:items-start gap-6">

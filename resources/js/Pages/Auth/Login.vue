@@ -8,6 +8,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import AuthProviders from "@/Components/AuthProviders.vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import SimpleLink from "@/Components/SimpleLink.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -35,7 +36,9 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <ApplicationLogo/>
+            <Link href="/">
+                <SimpleLink v-bind:href="route('home')"><img src="/img/icon.png" width="50" alt=""></SimpleLink>
+            </Link>
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">

@@ -20,19 +20,6 @@ import {router} from "@inertiajs/vue3";
                 Explore thousands
                 of sites based on the technologies they use, whether frameworks, programming languages, databases, or
                 other technology tools.
-
-<!--                Ever wondered what technologies your favorite websites are built with?-->
-<!--                <br>-->
-<!--                <br>-->
-<!--                Our powerful SaaS solution lets you uncover the tech stack behind any website with just a click. Whether-->
-<!--                you're a developer looking to stay ahead of the curve, a marketer seeking insights, or a business owner-->
-<!--                evaluating competitors, we've got you covered.-->
-<!--                <br>-->
-<!--                <br>-->
-<!--                With our advanced search and filtering options, you can explore websites by specific technologies.-->
-<!--                <br>-->
-<!--                <br>-->
-<!--                Join us today and unlock the secrets of the web's most successful sites.-->
             </div>
             <ul class="space-y-1.5">
                 <li class="flex items-center justify-start gap-2">
@@ -42,7 +29,7 @@ import {router} from "@inertiajs/vue3";
                     <ListTick>Search for websites</ListTick>
                 </li>
                 <li class="flex items-center justify-start gap-2">
-                    <ListTick>Get insights</ListTick>
+                    <ListTick>Connect and collaborate</ListTick>
                 </li>
             </ul>
             <PrimaryButton @click="router.visit('register')">

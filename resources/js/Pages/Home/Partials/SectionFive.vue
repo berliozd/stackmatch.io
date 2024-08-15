@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import {usePage} from "@inertiajs/vue3";
+</script>
 <template>
     <section class=" text-center md:p-12 p-6">
 
@@ -39,6 +41,8 @@
                                 Using our tool, you can identify companies that use technologies compatible with your
                                 solutions. Once you have found relevant prospects, you can contact them directly to
                                 offer your services.
+                                <br/>
+                                <strong>{{usePage().props.app.name}} helps you keep tracks of your promoting efforts.</strong>
                             </div>
                         </div>
                     </div>

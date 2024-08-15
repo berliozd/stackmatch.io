@@ -6,12 +6,9 @@ import {usePage} from "@inertiajs/vue3";
     <section class="text-center md:p-12 p-6 md:py-16 space-y-12 md:space-y-16 bg-neutral">
 
         <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl">
-<!--            Find Websites Using Your Favorite <span-->
-<!--            class="bg-base-300 text-neutral-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed">Technologies</span>-->
-
-            Find websites that speak your <span
-            class="bg-base-300 text-neutral-content px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed">technology</span> language.
-
+            Find websites that speak your
+            <span class="bg-base-300 px-2 md:px-4 ml-1 md:ml-1.5 leading-relaxed">technology</span>
+            language.
         </h2>
 
         <p class="max-w-2xl mx-auto text-lg leading-relaxed">
@@ -22,7 +19,7 @@ import {usePage} from "@inertiajs/vue3";
             Join us today and unlock the secrets of the web's most successful sites.
         </p>
 
-        <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl">Use cases</h2>
+        <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl text-neutral-content">Use cases</h2>
 
         <div class="max-w-5xl bg-base-300 mx-auto rounded-box grid md:grid-cols-2 py-16 gap-8 md:gap-16">
             <div class="px-8">
@@ -50,7 +47,8 @@ import {usePage} from "@inertiajs/vue3";
                 <span class="text-4xl">👩🏼‍🎓</span>
                 <h3 class="text-xl md:text-2xl font-bold mb-2">Recruiters</h3>
                 <div class="">
-                    Identify companies using specific technologies to match them with potential candidates with relevant skills.
+                    Identify companies using specific technologies to match them with potential candidates with relevant
+                    skills.
                 </div>
             </div>
             <div class="px-8">
@@ -61,7 +59,7 @@ import {usePage} from "@inertiajs/vue3";
                 </div>
             </div>
             <div class="px-8">
-                <span class="text-4xl">👷🏿</span>
+                <span class="text-4xl">💰</span>
                 <h3 class="text-xl md:text-2xl font-bold mb-2">Investors</h3>
                 <div class="">
                     Identify potential investment opportunities by analyzing the technologies used by start-ups and
