@@ -61,7 +61,7 @@ const subscription = usePage().props.subscription
                                     Websites search
                                 </NavLink>
                                 <a :href="route('subscribe.checkout')" v-if="!subscription"
-                                   :class="'inline-flex items-center px-1 pt-1 text-sm hover:text-neutral-content/70'">
+                                   :class="'inline-flex items-center px-1 pt-1 text-sm font-medium'">
                                     {{ $t('layout.subscription') }}
                                 </a>
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">

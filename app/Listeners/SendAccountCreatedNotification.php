@@ -3,29 +3,36 @@
 namespace App\Listeners;
 
 use Illuminate\Auth\Events\Registered;
-use Mailjet\Client;
-use Mailjet\Resources;
 
 class SendAccountCreatedNotification
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
-     * Handle the event.
-     */
     public function handle(Registered $event): void
     {
         $this->sendEmail($event->user);
+        $this->sendMailService->addToContactList($event->user);
     }
 
     private function sendEmail($user): void
     {
-        $content = <<<HTML
+        $subject = __(
+            'Welcome to :app_name – Your Journey Starts Here!',
+            ['app_name' => config('app.name')]
+        );
+        $content = $this->getContent();
+        $content = __(
+            $content,
+            [
+                'user_name' => $user->name,
+                'app_name' => config('app.name'),
+                'app_url' => config('app.url')
+            ]
+        );
+        $this->sendMailService->sendEmail($content, $subject, $user);
+    }
+
+    public function getContent(): string
+    {
+        return <<<HTML
 Hi :user_name,
 <br/>
 <br/>
@@ -57,7 +64,7 @@ We're thrilled to have you join our community of developers, creators, recruiter
 <strong>Need Help?</strong>
 <br/>
 <br/>
-Our support team is here to assist you. Feel free to reach out to us at [support@stackmatch.io](mailto:support@stackmatch.io) with any questions or feedback.
+Our support team is here to assist you. Feel free to reach out to us at [didier@addeos.com.io](mailto:didier@addeso.com) with any questions or feedback.
 <br/>
 <br/>
 <strong>Stay Tuned:</strong>
@@ -77,60 +84,5 @@ Didier
 Founder of :app_name
 <br/>
 HTML;
-
-        $mj = new Client(
-            config('services.mailjet.client_id'),
-            config('services.mailjet.client_secret'),
-            true,
-            ['version' => 'v3.1']
-        );
-        $subject = __(
-            'Welcome to :app_name – Your Journey Starts Here!',
-            ['app_name' => config('app.name')]
-        );
-        $body = [
-            'Messages' => [
-                [
-                    'From' => [
-                        'Email' => config('services.mailjet.mail_from'),
-                        'Name' => config('app.name')
-                    ],
-                    'To' => [
-                        [
-                            'Email' => $user->email,
-                            'Name' => $user->name
-                        ]
-                    ],
-                    'Subject' => $subject,
-                    'HTMLPart' => __(
-                        $content,
-                        [
-                            'user_name' => $user->name,
-                            'app_name' => config('app.name'),
-                            'nb_fee_credits' => config('app.free-ai-credits'),
-                            'app_url' => config('app.url')
-                        ]
-                    )
-                ],
-                [
-                    'From' => [
-                        'Email' => config('services.mailjet.mail_from'),
-                        'Name' => config('app.name')
-                    ],
-                    'To' => [
-                        [
-                            'Email' => config('services.mailjet.mail_from'),
-                            'Name' => config('app.name')
-                        ]
-                    ],
-                    'Subject' => $subject,
-                    'HTMLPart' => __(
-                        ':name :email has just created an account.',
-                        ['name' => $user->name, 'email' => $user->email]
-                    )
-                ]
-            ]
-        ];
-        $mj->post(Resources::$Email, ['body' => $body]);
     }
 }
