@@ -6,10 +6,12 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Ad from "@/Components/Ad.vue";
+import DeleteButton from "@/Components/DeleteButton.vue";
 
 import {Head, router, usePage} from '@inertiajs/vue3';
 import {useStore} from "@/Composables/store.js";
 import {ref} from "vue";
+import goTo from "@/Composables/App/goTo.js";
 
 const userWebsites = ref(null)
 const selectedUserWebsite = ref(null)
@@ -71,25 +73,23 @@ const confirmDeleteUserWebsite = async (userWebsite) => {
         </div>
         <Box class="min-h-52">
             <template v-if="userWebsites?.length!=0">
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="text-xs font-bold uppercase text-center py-2 ">Name</div>
-                    <div class="text-xs font-bold uppercase text-center py-2 ">Url</div>
-                    <div class="text-xs font-bold uppercase text-center py-2 "></div>
+                <div class="grid grid-cols-6">
+                    <div class="text-xs font-bold uppercase py-2 col-span-3">Name</div>
+                    <div class="text-xs font-bold uppercase py-2 col-span-2">Url</div>
+                    <div class="text-xs font-bold uppercase py-2 "></div>
                 </div>
                 <div v-for="userWebsite in userWebsites"
-                     class="grid grid-cols-3 gap-4 [&:nth-child(even)]:bg-neutral-content hover:bg-accent/20 p-1 text-gray-500">
-                    <div class="text-center text-sm break-words">{{ userWebsite.website.name }}</div>
-                    <div class="text-center text-sm break-all">
-                        <a :href="'https://www.' + userWebsite.website.url" target="_blank">
-                            {{ userWebsite.website.url }}
-                        </a>
+                     class="grid grid-cols-6 [&:nth-child(even)]:bg-neutral-content hover:bg-accent/20 p-1 text-gray-500">
+                    <div class="col-span-3 text-sm break-words hover:cursor-pointer"
+                         @click="selectUserWebsite(userWebsite)">
+                        {{ userWebsite.website.name }}
                     </div>
-                    <div class="flex flex-col md:flex-row md:space-y-0 space-y-1 md:space-x-2 justify-end">
-                        <PrimaryButton @click="selectUserWebsite(userWebsite)" :type="'button'"
-                                       class="flex justify-center h-10">View
-                        </PrimaryButton>
-                        <SecondaryButton @click="deleteUserWebsite(userWebsite)" class="flex justify-center h-10">Delete
-                        </SecondaryButton>
+                    <div class="col-span-2 text-sm break-all hover:cursor-pointer"
+                         @click="goTo('https://www.' + userWebsite.website.url, '_blank')">
+                        {{ userWebsite.website.url }}
+                    </div>
+                    <div class="flex justify-end">
+                        <DeleteButton @click="deleteUserWebsite(userWebsite)"></DeleteButton>
                     </div>
                 </div>
             </template>
