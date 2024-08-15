@@ -64,7 +64,7 @@ class SendMailService
                 ],
                 'ContactsLists' => [['Action' => 'addforce', 'ListID' => config('services.mailjet.list_id')]]
             ];
-            $mj = $this->getClient();
+            $mj = $this->getClient('v3');
             $response = $mj->post(Resources::$ContactManagemanycontacts, ['body' => $params]);
             Log::info('added to contact list : ' . $response->success());
             Log::info(json_encode($response->getData()));
@@ -73,13 +73,13 @@ class SendMailService
         }
     }
 
-    public function getClient(): Client
+    public function getClient(string $version = 'v3.1'): Client
     {
         return new Client(
             config('services.mailjet.client_id'),
             config('services.mailjet.client_secret'),
             true,
-            ['version' => 'v3.1']
+            ['version' => $version]
         );
     }
 }

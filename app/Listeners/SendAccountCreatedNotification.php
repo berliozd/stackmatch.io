@@ -14,7 +14,6 @@ class SendAccountCreatedNotification
     public function handle(Registered $event): void
     {
         $this->sendEmail($event->user);
-        $this->sendMailService->addToContactList($event->user);
     }
 
     private function sendEmail($user): void
@@ -33,6 +32,8 @@ class SendAccountCreatedNotification
             ]
         );
         $this->sendMailService->sendEmail($content, $subject, $user);
+        $this->sendMailService->addToContactList($user);
+
     }
 
     public function getContent(): string
