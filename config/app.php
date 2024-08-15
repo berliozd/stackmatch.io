@@ -7,6 +7,7 @@ return [
     'home-route' => 'websites',
     'nb-free-searches' => env('APP_NB_FREE_SEARCHES', 3),
     'nb-free-websites' => env('APP_NB_FREE_WEBSITES', 10),
+    'google-analytics-id'=>env('GOOGLE_ANALYTICS_ID'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

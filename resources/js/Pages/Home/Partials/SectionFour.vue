@@ -38,7 +38,7 @@ import {router, usePage} from "@inertiajs/vue3";
           </ul>
           <div class="space-y-2">
             <PrimaryButton @click="router.visit('register')">
-              <Arrow>Get {{usePage().props.app.name}}</Arrow>
+              <Arrow>Try {{usePage().props.app.name}}</Arrow>
             </PrimaryButton>
           </div>
         </div>
@@ -81,7 +81,7 @@ import {router, usePage} from "@inertiajs/vue3";
 
           <div class="space-y-2">
             <PrimaryButton @click="router.visit('register')">
-              <Arrow>Get {{usePage().props.app.name}}</Arrow>
+              <Arrow>Try {{usePage().props.app.name}}</Arrow>
             </PrimaryButton>
           </div>
         </div>
