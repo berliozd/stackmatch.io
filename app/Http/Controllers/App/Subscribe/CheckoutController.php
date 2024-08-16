@@ -26,6 +26,6 @@ class CheckoutController extends Controller
             $subscriptionBuilder->withMetadata(['promotekit_referral' => $_COOKIE['promotekit_referral']]);
         }
 
-        return $subscriptionBuilder->checkout();
+        return $subscriptionBuilder->checkout(['success_url' => route('websites')]);
     }
 }
