@@ -17,6 +17,10 @@ import {usePage} from "@inertiajs/vue3";
             <br>
             <br>
             Join us today and unlock the secrets of the web's most successful sites.
+            <br><br>
+            Explore thousands
+            of sites based on the technologies they use, whether frameworks, programming languages, databases, or
+            other technology tools.
         </p>
 
         <h2 class="max-w-2xl md:mx-auto font-extrabold mb-6 md:mb-8 md:text-5xl text-2xl text-neutral-content">Use cases</h2>

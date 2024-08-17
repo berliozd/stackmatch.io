@@ -7,6 +7,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
+    return;
     if (usePage().props.subscription && usePage().props.subscription.is_valid) {
         return;
     }

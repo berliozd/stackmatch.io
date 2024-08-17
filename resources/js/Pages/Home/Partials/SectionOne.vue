@@ -8,18 +8,13 @@ import {router} from "@inertiajs/vue3";
 
 <template>
     <section class="md:p-12 p-6 mx-auto">
-        <div class="px-8 pb-6 flex flex-col gap-10 lg:gap-14 items-center text-center">
+        <div class="px-8 pb-2 flex flex-col gap-8 items-center text-center">
             <h1 class="md:text-7xl text-3xl my-6 font-extrabold leading-normal">
                 Find websites <br> that use your <span class="border-b-8 border-dashed border-primary/50 italic">technology</span>.
             </h1>
             <div class="text-lg max-w-xl mx-auto">
-
                 Whether you are a developer, creator of technical solutions, recruiter or investor, our platform allows
                 you to discover websites that use technologies that you master or that interest you.
-                <br><br>
-                Explore thousands
-                of sites based on the technologies they use, whether frameworks, programming languages, databases, or
-                other technology tools.
             </div>
             <ul class="space-y-1.5">
                 <li class="flex items-center justify-start gap-2">
