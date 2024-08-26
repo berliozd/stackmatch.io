@@ -70,7 +70,7 @@ We're thrilled to have you join our community of developers, creators, recruiter
 <strong>Need Help?</strong>
 <br/>
 <br/>
-Our support team is here to assist you. Feel free to reach out to us at [didier@addeos.com.io](mailto:didier@addeso.com) with any questions or feedback.
+Our support team is here to assist you. Feel free to reach out to us at [didier@addeos.com](mailto:didier@addeos.com) with any questions or feedback.
 <br/>
 <br/>
 <strong>Stay Tuned:</strong>
