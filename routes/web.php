@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
 
+Route::get('/health', function () {
+    return 'OK';
+});
+
+
 Route::get('/', function () {
     return Inertia::render('Home/Welcome', [
         'canLogin' => Route::has('login'),
