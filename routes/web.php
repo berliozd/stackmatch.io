@@ -14,6 +14,15 @@ Route::get('/health', function () {
     return 'OK';
 });
 
+Route::get('/_debug', function () {
+    return [
+        'https' => $_SERVER['HTTPS'] ?? null,
+        'x-forwarded-proto' => $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? null,
+        'scheme' => request()->getScheme(),
+        'is_secure' => request()->isSecure(),
+    ];
+});
+
 
 Route::get('/', function () {
     return Inertia::render('Home/Welcome', [
