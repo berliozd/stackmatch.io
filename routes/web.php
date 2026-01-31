@@ -24,6 +24,14 @@ Route::get('/_debug', function () {
 });
 
 Route::get('/test', \App\Http\Controllers\App\TestController::class)->name('test');
+Route::get('/testInertia', function () {
+    return Inertia::render('Home/Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('testInertia');
 
 Route::get('/', function () {
     return Inertia::render('Home/Welcome', [
