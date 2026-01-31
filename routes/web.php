@@ -23,6 +23,7 @@ Route::get('/_debug', function () {
     ];
 });
 
+Route::get('/test', \App\Http\Controllers\App\TestController::class)->name('test');
 
 Route::get('/', function () {
     return Inertia::render('Home/Welcome', [
